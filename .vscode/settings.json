@@ -1,0 +1,88 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "explorer.confirmDelete": false,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 1,
+  "editor.fontSize": 18,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "files.associations": {
+      "javascript": "jsx",
+  },
+  "emmet.includeLanguages": {
+      "javascript": "javascriptreact",
+  },
+  "emmet.syntaxProfiles": {
+      "javascript": "jsx"
+  },
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "C_Cpp.updateChannel": "Insiders",
+  "[javascript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "cSpell.language": ",pt,pt_BR",
+  "sync.gist": "e1fd35b32369ba286f1b22f79ba84207",
+  "sync.autoDownload": true,
+  "sync.autoUpload": true,
+  "sync.quietSync": true,
+  "cSpell.userWords": [
+      "Chart",
+      "Hello",
+      "Props",
+      "Redirect",
+      "Reducers",
+      "button",
+      "daily",
+      "delays",
+      "dispatch",
+      "done",
+      "durations",
+      "exact",
+      "payload",
+      "reducer"
+  ],
+  "spellright.language": [
+      ",pt,pt_BR",
+      "en"
+  ],
+  "cSpell.dictionaryDefinitions": [],
+  "bracket-pair-colorizer-2.colors": [
+      "Gold",
+      "Orchid",
+      "LightSkyBlue"
+  ],
+  "bracket-pair-colorizer-2.excludedLanguages": [],
+  "[json]": {
+      "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "files.autoSave": "off",
+  "editor.wordWrap": "on",
+  "[dart]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnType": true,
+      "editor.rulers": [
+          80
+      ],
+      "editor.selectionHighlight": false,
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.suggestSelection": "first",
+      "editor.tabCompletion": "onlySnippets",
+      "editor.wordBasedSuggestions": false
+  },
+  "dart.checkForSdkUpdates": false,
+  "workbench.colorTheme": "Omni",
+  "tabnine.experimentalAutoImports": true,
+  "explorer.compactFolders": false,
+  "editor.renderLineHighlight": "gutter",
+  "workbench.editor.labelFormat": "short",
+  "breadcrumbs.enabled": true,
+  "editor.tabSize": 2,
+}
