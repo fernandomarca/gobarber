@@ -48,26 +48,20 @@ usersRouter.post('/', async (request, response) => {
 })
 
 usersRouter.patch('/avatar', ensuraAuthenticated, upload.single('avatar'), async (request, response) => {
-  try {
-    const updateUserAvatarService = new UpdateUserAvatarService();
 
-    const user = await updateUserAvatarService.execute({
-      user_id: request.user.id,
-      avatarFilename: request.file.filename,
-    });
+  const updateUserAvatarService = new UpdateUserAvatarService();
 
-    const userWithoutPassword = {
-      ...user,
-      password: ''
-    }
+  const user = await updateUserAvatarService.execute({
+    user_id: request.user.id,
+    avatarFilename: request.file.filename,
+  });
 
-    return response.status(201).json(userWithoutPassword);
-
-  } catch (error) {
-    return response.status(400).json({
-      error: error.message
-    }
-    );
+  const userWithoutPassword = {
+    ...user,
+    password: ''
   }
+
+  return response.status(201).json(userWithoutPassword);
+
 });
 export default usersRouter;
