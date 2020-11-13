@@ -3,15 +3,9 @@ import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 import getValidationErrors from './getValidationErrors';
 
-interface FormInterface {
-  formRef: React.RefObject<FormHandles>;
-  data: {};
-}
+type FormRef = React.RefObject<FormHandles>;
 
-const inputValidation = async ({
-  formRef,
-  data,
-}: FormInterface): Promise<void> => {
+const inputValidation = async (formRef: FormRef, data: {}): Promise<void> => {
   try {
     formRef.current?.setErrors({});
     const schema = Yup.object().shape({

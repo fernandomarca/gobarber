@@ -13,7 +13,7 @@ interface Request {
 }
 
 interface Response {
-  user: User;
+  userWithoutPassword: User;
   token: string;
 }
 
@@ -21,20 +21,20 @@ class AuthenticateUserService {
   public async execute({ email, password }: Request): Promise<Response> {
     const usersRepository = getRepository(User);
 
-    const user = await usersRepository.findOne({
+    const userWithoutPassword = await usersRepository.findOne({
       where: {
         email
       }
     });
 
-    if (!user) {
+    if (!userWithoutPassword) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
 
     //user.password - senha criptografada
     //password - senha nao criptografada
 
-    const passwordMatched = await compare(password, user.password);
+    const passwordMatched = await compare(password, userWithoutPassword.password);
 
     if (!passwordMatched) {
       throw new AppError('Incorrect email/password combination.', 401);
@@ -43,12 +43,12 @@ class AuthenticateUserService {
     const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {
-      subject: user.id,
+      subject: userWithoutPassword.id,
       expiresIn,
     })
 
     return {
-      user,
+      userWithoutPassword,
       token
     };
 
