@@ -26,6 +26,7 @@
     ],
     "rules": {
         "react/jsx-props-no-spreading":"off",
+        // "react/jsx-ident":"off",
         "arrow-body-style":"off",
         "operator-linebreak":"off",
         "implicit-arrow-linebreak":"off",

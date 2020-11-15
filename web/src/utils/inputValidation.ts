@@ -5,7 +5,7 @@ import getValidationErrors from './getValidationErrors';
 
 type FormRef = React.RefObject<FormHandles>;
 
-const inputValidation = async (formRef: FormRef, data: {}): Promise<void> => {
+const InputValidation = async (formRef: FormRef, data: {}): Promise<void> => {
   try {
     formRef.current?.setErrors({});
     const schema = Yup.object().shape({
@@ -18,11 +18,9 @@ const inputValidation = async (formRef: FormRef, data: {}): Promise<void> => {
     await schema.validate(data, {
       abortEarly: false,
     });
-    // formRef.current?.reset();
   } catch (err) {
     const errors = getValidationErrors(err);
     formRef.current?.setErrors(errors);
-    // formRef.current?.reset();
   }
 };
-export default inputValidation;
+export default InputValidation;

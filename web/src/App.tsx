@@ -8,14 +8,12 @@ import Router from './Routes';
 import AppProvider from './hooks';
 
 const App: React.FC = () => (
-  <>
+  <BrowserRouter>
     <AppProvider>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <Router />
     </AppProvider>
     <GlobalStyles />
-  </>
+  </BrowserRouter>
 );
 
 export default App;
