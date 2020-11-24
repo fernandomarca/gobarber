@@ -12,11 +12,8 @@ appointmentsRouter.use(ensuraAuthenticated);
 
 appointmentsRouter.post('/', appointmentsController.create);
 
+// appointmentsRouter.get('/', appointmentsController.list);
+
 export default appointmentsRouter;
 
-// appointmentsRouter.get('/', async (request, response) => {
 
-//   const appointments = await appointmentRepository.find();
-//   const user = request.user;
-//   return response.json({ appointments, user });
-// });
