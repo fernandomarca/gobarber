@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 
-import User from './Users.Model';
+import User from '@modules/users/infra/typeorm/entities/User';
 @Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
