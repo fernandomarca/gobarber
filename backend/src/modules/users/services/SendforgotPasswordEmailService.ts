@@ -20,11 +20,11 @@ class SendForgotPasswordEmailService {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
 
-    @inject("userTokensRepository")
-    private userTokensRepository: IUserTokensRepository,
-
     @inject("MailProvider")
     private mailProvider: IMailProvider,
+
+    @inject("UserTokensRepository")
+    private userTokensRepository: IUserTokensRepository,
   ) { }
 
   public async execute({ email }: IRequest): Promise<void> {
@@ -36,6 +36,8 @@ class SendForgotPasswordEmailService {
     }
 
     const { token } = await this.userTokensRepository.generate(user.id)
+
+    console.log(token)
 
     await this.mailProvider.sendMail(
       email,
