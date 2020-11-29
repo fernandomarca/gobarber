@@ -3,12 +3,12 @@
 **RF**
 
 [x] O user deve poder recuperar sua senha informando o seu e-mail;
-- O user deve receber um e-mail com instruções de recuperação de senha;
-- O user deve poder resetar sua senha;
+[x] O user deve receber um e-mail com instruções de recuperação de senha;
+[x] O user deve poder resetar sua senha;
 
 **RNF**
 
-- Utilizar MailTrap para testar envio de e-mail no ambiente de dev;
+[x] Utilizar MailTrap para testar envio de e-mail no ambiente de dev;
 - Utilizar Amazon SES para envios em produção;
 - O envio de e-mails deve acontecer em segundo plano(background job);
 
@@ -21,15 +21,15 @@
 
 **RF**
 
-- o user deve poder atualizar seu perfil, nome, e-mail e senha;
+[x] o user deve poder atualizar seu perfil, nome, e-mail e senha;
 
 **RNF**
 
 **Regras de Négocio**
 
-- O user não pode alterar seu email para um em email já utilizado;
-- Para atualizar sua senha, o usuario deve informar a senha antiga;
-- Para atualizar sua senha, o usuario precisa confirmar a nova senha;
+[x] O user não pode alterar seu email para um em email já utilizado;
+[x] Para atualizar sua senha, o usuario deve informar a senha antiga;
+[x] Para atualizar sua senha, o usuario precisa confirmar a nova senha;
 
 # Painel do prestador
 

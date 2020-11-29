@@ -4,7 +4,6 @@ import { container } from 'tsyringe';
 
 import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 
-import AppointmentRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentRepository';
 export default class AppointmentsController {
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -23,13 +22,4 @@ export default class AppointmentsController {
 
     return response.json(appointment);
   }
-
-  // public async list(request: Request, response: Response): Promise<Response> {
-
-  //   const appointments = new AppointmentRepository();
-  //   // const appointments = await appointmentRepository.find();
-  //   appointments.findByDate()
-  //   const user = request.user;
-  //   return response.json({ appointments, user });
-  // }
 }
