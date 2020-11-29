@@ -23,7 +23,7 @@ export default class UsersController {
 
       const userWithoutPassword = {
         ...user,
-        password: ''
+        password: undefined
       }
 
       return response.status(201).json(userWithoutPassword);
