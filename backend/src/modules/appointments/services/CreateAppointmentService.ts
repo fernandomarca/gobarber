@@ -1,4 +1,4 @@
-import { isBefore, startOfHour, getHours } from 'date-fns';
+import { isBefore, startOfHour, getHours, format } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointments';
@@ -6,6 +6,8 @@ import Appointment from '@modules/appointments/infra/typeorm/entities/Appointmen
 import AppError from '@shared/errors/AppError';
 
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
+
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 interface IRequest {
   provider_id: string;
@@ -17,11 +19,17 @@ interface IRequest {
 class CreateAppointmentService {
   private appointmentRepository: IAppointmentsRepository;
 
+  private notificationsRepository: INotificationsRepository;
+
   constructor(
     @inject('AppointmentsRepository')
     appointmentRepository: IAppointmentsRepository,
+
+    @inject('NotificationsRepository')
+    notificationsRepository: INotificationsRepository,
   ) {
     this.appointmentRepository = appointmentRepository;
+    this.notificationsRepository = notificationsRepository;
   }
 
   public async execute({
@@ -55,14 +63,15 @@ class CreateAppointmentService {
       date: appointmentDate,
     });
 
+    const dateFormated = format(appointmentDate, "dd/MM/yyyy 'às' HH:mm'h'");
+
+    await this.notificationsRepository.create({
+      recipient_id: provider_id,
+      content: `Novo agendamento para dia ${dateFormated}`
+    })
+
     return appointment;
   }
 }
 export default CreateAppointmentService;
 
-/**
- * Dependency Inversion (SOLID);
- *
- * S:Single Responsability Principle
- * D: Dependency invertion Principle
- */

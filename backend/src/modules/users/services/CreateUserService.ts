@@ -8,13 +8,11 @@ import IUsersRepository from '../repositories/IUserRepositories';
 
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
-
 interface IRequest {
   name: string,
   email: string,
   password: string
 }
-
 @injectable()
 class CreateUserService {
 
