@@ -4,7 +4,5 @@
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2"
   },
-  "dependencies": {
-    "celebrate": "^13.0.4"
-  }
+  "dependencies": {}
 }
