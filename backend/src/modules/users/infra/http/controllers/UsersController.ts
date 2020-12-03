@@ -4,6 +4,7 @@ import { Response, Request } from 'express';
 import { container } from 'tsyringe';
 
 import CreateUserService from '@modules/users/services/CreateUserService';
+import { classToClass } from 'class-transformer';
 
 
 export default class UsersController {
@@ -21,12 +22,7 @@ export default class UsersController {
         password
       });
 
-      const userWithoutPassword = {
-        ...user,
-        password: undefined
-      }
-
-      return response.status(201).json(userWithoutPassword);
+      return response.status(201).json(classToClass(user));
 
     } catch (error) {
 

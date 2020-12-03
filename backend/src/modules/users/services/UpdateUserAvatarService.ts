@@ -24,7 +24,7 @@ class UpdateUserAvatarService {
     storageProvider: IStorageProvider,
   ) {
     this.usersRepository = usersRepository;
-    this.storageProvider = storageProvider
+    this.storageProvider = storageProvider;
   }
 
   public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
