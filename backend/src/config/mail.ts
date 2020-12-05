@@ -15,7 +15,7 @@ export default {
   defaults: {
     from: {
       email: 'contato@fmmagalhaes.com.br',
-      name: 'Fernando da FM Magalhães'
+      name: ''
     }
   }
 } as IMailConfig;

@@ -9,6 +9,8 @@ import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICachaProvider';
+
 interface IRequest {
   provider_id: string;
   date: Date;
@@ -27,6 +29,9 @@ class CreateAppointmentService {
 
     @inject('NotificationsRepository')
     notificationsRepository: INotificationsRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {
     this.appointmentRepository = appointmentRepository;
     this.notificationsRepository = notificationsRepository;
@@ -68,7 +73,11 @@ class CreateAppointmentService {
     await this.notificationsRepository.create({
       recipient_id: provider_id,
       content: `Novo agendamento para dia ${dateFormated}`
-    })
+    });
+
+    await this.cacheProvider.invalidate(
+      `provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`
+    );
 
     return appointment;
   }
