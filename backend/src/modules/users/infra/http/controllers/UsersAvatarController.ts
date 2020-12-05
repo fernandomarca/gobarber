@@ -1,5 +1,3 @@
-//index,show,create,update,delete
-
 import { Response, Request } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
