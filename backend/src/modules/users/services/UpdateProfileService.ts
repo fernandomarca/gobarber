@@ -1,6 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 
-// import AppError from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUserRepositories';
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
@@ -49,23 +48,11 @@ class UpdateProfileService {
         throw new AppError('old password does not match');
       }
 
-      user = {
-        ...user,
-        name,
-        email,
-        password: await this.hashProvider.generateHash(password)
-      }
+      user.password = await this.hashProvider.generateHash(password)
+
     }
 
-    user = {
-      ...user,
-      name,
-      email,
-    }
-
-    await this.usersRepository.save(user);
-
-    return user;
+    return this.usersRepository.save(user);
   }
 }
 

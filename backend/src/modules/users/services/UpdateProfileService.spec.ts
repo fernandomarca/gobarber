@@ -20,9 +20,9 @@ describe('UpdateProfile', () => {
 
   it("should be able to update the profile", async () => {
     const user = await fakeUsersRepository.create({
-      name: "John Doe",
-      email: "johndoe@example.com",
-      password: "123456"
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: '123456'
     });
 
     const updatedUser = await updateProfileService.execute({

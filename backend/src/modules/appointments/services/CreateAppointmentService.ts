@@ -19,23 +19,17 @@ interface IRequest {
 
 @injectable()
 class CreateAppointmentService {
-  private appointmentRepository: IAppointmentsRepository;
-
-  private notificationsRepository: INotificationsRepository;
 
   constructor(
     @inject('AppointmentsRepository')
-    appointmentRepository: IAppointmentsRepository,
+    private appointmentRepository: IAppointmentsRepository,
 
     @inject('NotificationsRepository')
-    notificationsRepository: INotificationsRepository,
+    private notificationsRepository: INotificationsRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
-  ) {
-    this.appointmentRepository = appointmentRepository;
-    this.notificationsRepository = notificationsRepository;
-  }
+  ) { }
 
   public async execute({
     date,
