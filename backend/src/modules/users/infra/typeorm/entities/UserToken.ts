@@ -1,6 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Generated, OneToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Generated } from 'typeorm';
 
-import User from '@modules/users/infra/typeorm/entities/User';
 @Entity('users_tokens')
 class UserToken {
   @PrimaryGeneratedColumn('uuid')
@@ -12,10 +11,6 @@ class UserToken {
 
   @Column()
   user_id: string;
-
-  // @OneToOne(() => User)
-  // @JoinColumn({ name: 'user_id' })
-  // provider: User;
 
   @CreateDateColumn()
   created_at: Date;

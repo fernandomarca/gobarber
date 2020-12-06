@@ -4,6 +4,7 @@ import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 import Appointment from '../infra/typeorm/entities/Appointments';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICachaProvider';
+import { classToClass } from 'class-transformer';
 
 interface IRequest {
   provider_id: string;
@@ -32,6 +33,7 @@ class ListProviderAppointmentsService {
 
     const cacheKey = `provider-appointments:${provider_id}:${year}-${month}-${day}`;
     let appointments = await this.cacheProvider.recover<Appointment[]>(cacheKey);
+    // let appointments;
 
     if (!appointments) {
       appointments = await this.appointmentsRepository.findAllInDayFromProvider({
@@ -44,7 +46,7 @@ class ListProviderAppointmentsService {
 
     await this.cacheProvider.save(
       cacheKey,
-      appointments
+      classToClass(appointments)
     );
 
     return appointments;
