@@ -21,7 +21,7 @@ class ResetPasswordService {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
 
-    @inject("userTokensRepository")
+    @inject("UserTokensRepository")
     private userTokensRepository: IUserTokensRepository,
 
     @inject("HashProvider")
@@ -31,6 +31,8 @@ class ResetPasswordService {
   public async execute({ password, token }: IRequest): Promise<void> {
 
     const userToken = await this.userTokensRepository.findByToken(token);
+
+    console.log(userToken);
 
     if (!userToken) {
       throw new AppError('User token does not exists');
