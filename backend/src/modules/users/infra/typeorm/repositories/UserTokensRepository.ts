@@ -6,7 +6,7 @@ import UserToken from '../entities/UserToken';
 
 class UserTokenRepository implements IUserTokensRepository {
 
-  private ormRepository: Repository<UserToken>
+  private ormRepository: Repository<UserToken>;
 
   constructor() {
     this.ormRepository = getRepository(UserToken);
