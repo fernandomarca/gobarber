@@ -6,6 +6,7 @@ import 'react-day-picker/lib/style.css';
 
 import { FiClock, FiPower } from 'react-icons/fi';
 import { isAfter } from 'date-fns/esm';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -20,6 +21,7 @@ import {
 } from './styles';
 
 import logoImg from '../../assets/images/logo.svg';
+import notAvatar from '../../assets/notAvatar.png';
 import { useAuth } from '../../hooks/AuthContext';
 import api from '../../services/api';
 
@@ -140,12 +142,14 @@ const Dashboard: React.FC = () => {
 
           <Profile>
             <img
-              src={user.avatar_url ? user.avatar_url : logoImg}
+              src={user.avatar_url ? user.avatar_url : notAvatar}
               alt={user.name}
             />
             <div>
               <span>Bem-vindo</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
           <button onClick={signOut} type="button">
@@ -172,7 +176,7 @@ const Dashboard: React.FC = () => {
                   src={
                     nextAppointment.user.avatar_url
                       ? nextAppointment.user.avatar_url
-                      : logoImg
+                      : notAvatar
                   }
                   alt={nextAppointment.user.name}
                 />
@@ -206,7 +210,7 @@ const Dashboard: React.FC = () => {
                     src={
                       appointment.user.avatar_url
                         ? appointment.user.avatar_url
-                        : logoImg
+                        : notAvatar
                     }
                     alt={appointment.user.name}
                   />
@@ -236,7 +240,7 @@ const Dashboard: React.FC = () => {
                     src={
                       appointment.user.avatar_url
                         ? appointment.user.avatar_url
-                        : logoImg
+                        : notAvatar
                     }
                     alt={appointment.user.name}
                   />
