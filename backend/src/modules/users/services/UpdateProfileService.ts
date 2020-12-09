@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 
-import User from '../infra/typeorm/entities/User';
-import IUsersRepository from '../repositories/IUserRepositories';
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 import AppError from '@shared/errors/AppError';
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+import IUsersRepository from '../repositories/IUserRepositories';
 
+import User from '../infra/typeorm/entities/User';
 interface IRequest {
   user_id: string;
   name: string;
@@ -12,7 +12,6 @@ interface IRequest {
   password?: string;
   old_password?: string;
 }
-
 @injectable()
 class UpdateProfileService {
 
@@ -36,6 +35,9 @@ class UpdateProfileService {
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user_id) {
       throw new AppError('user email already in use');
     }
+
+    user.name = name;
+    user.email = email;
 
     if (password && !old_password) {
       throw new AppError('You need to inform the old password to set a new password');
