@@ -5,8 +5,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/Auth';
 import api from '../../services/api';
 
-import notAvatar from '../../assets/notAvatar.png';
-
 import {
   Container,
   Header,
