@@ -5,6 +5,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/Auth';
 import api from '../../services/api';
 
+import notAvatar from '../../assets/notAvatar.png';
+
 import {
   Container,
   Header,
@@ -30,7 +32,7 @@ export interface Provider {
 const dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   const { navigate } = useNavigation();
 
@@ -41,8 +43,7 @@ const dashboard: React.FC = () => {
   }, []);
 
   const navigateToProfile = useCallback(() => {
-    // navigate('Profile');
-    signOut();
+    navigate('Profile');
   }, [navigate]);
 
   const navigateToCreateAppointment = useCallback((providerId: string) => {
@@ -58,7 +59,10 @@ const dashboard: React.FC = () => {
         </HeaderTitle>
 
         <ProfileButton onPress={navigateToProfile}>
-          <UserAvatar source={{ uri: user.avatar_url }} />
+          {user.avatar_url
+            ? <UserAvatar source={{ uri: user.avatar_url }} />
+            : <UserAvatar source={notAvatar} />
+          }
         </ProfileButton>
       </Header>
 
@@ -70,7 +74,10 @@ const dashboard: React.FC = () => {
         }
         renderItem={({ item: provider }) => (
           <ProviderContainer onPress={() => navigateToCreateAppointment(provider.id)}>
-            <ProviderAvatar source={{ uri: provider.avatar_url }} />
+            {user.avatar_url
+              ? <UserAvatar source={{ uri: user.avatar_url }} />
+              : <UserAvatar source={notAvatar} />
+            }
             <ProviderInfo>
               <ProviderName>{provider.name}</ProviderName>
 

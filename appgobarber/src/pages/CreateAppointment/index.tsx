@@ -32,7 +32,7 @@ import {
 } from './styles';
 import { Alert, Platform } from 'react-native';
 import { format } from 'date-fns';
-
+import notAvatar from '../../assets/notAvatar.png';
 interface RouteParams {
   providerId: string;
 }
@@ -167,7 +167,10 @@ const CreateAppointment: React.FC = () => {
 
         <HeaderTitle>Cabeleireiros</HeaderTitle>
 
-        <UserAvatar source={{ uri: user.avatar_url }} />
+        {user.avatar_url
+          ? <UserAvatar source={{ uri: user.avatar_url }} />
+          : <UserAvatar source={notAvatar} />
+        }
       </Header>
 
       <Content>
@@ -182,7 +185,11 @@ const CreateAppointment: React.FC = () => {
                 onPress={() => handleSelectProvider(provider.id)}
                 selected={provider.id === selectedProvider}
               >
-                <ProviderAvatar source={{ uri: provider.avatar_url }} />
+                {provider.avatar_url
+                  ? <ProviderAvatar source={{ uri: provider.avatar_url }} />
+                  : <ProviderAvatar source={notAvatar}
+                  />}
+
                 <ProviderName
                   selected={provider.id === selectedProvider}
                 >{provider.name}</ProviderName>
