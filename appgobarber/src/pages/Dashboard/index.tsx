@@ -37,7 +37,7 @@ const dashboard: React.FC = () => {
   const { navigate } = useNavigation();
 
   useEffect(() => {
-    api.get('providers').then(response => {
+    api.get('/providers').then(response => {
       setProviders(response.data);
     });
   }, []);
@@ -74,8 +74,8 @@ const dashboard: React.FC = () => {
         }
         renderItem={({ item: provider }) => (
           <ProviderContainer onPress={() => navigateToCreateAppointment(provider.id)}>
-            {user.avatar_url
-              ? <UserAvatar source={{ uri: user.avatar_url }} />
+            {provider.avatar_url
+              ? <UserAvatar source={{ uri: provider.avatar_url }} />
               : <UserAvatar source={notAvatar} />
             }
             <ProviderInfo>

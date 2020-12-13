@@ -21,12 +21,12 @@ import Button from '../../components/Button';
 
 import notAvatar from '../../assets/notAvatar.png';
 
-import { Container, Title, UserAvatarButton, UserAvatar, BackButton } from './styles';
+import { Container, Title, UserAvatarButton, UserAvatar, BackButton, LogoutButton, ContainerButtons } from './styles';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
 
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, signOut } = useAuth();
 
   const formRef = useRef<FormHandles>(null);
 
@@ -121,6 +121,7 @@ const Profile: React.FC = () => {
 
   const handleUpdateAvatar = useCallback(() => {
     ImagePicker.launchCamera({
+      mediaType: "photo",
     }, response => {
       if (response.didCancel) {
         return;
@@ -145,6 +146,10 @@ const Profile: React.FC = () => {
     });
   }, [updateUser, user.id]);
 
+  const handleLogout = useCallback(() => {
+    signOut();
+  }, [signOut])
+
   return (
     <>
       <KeyboardAvoidingView
@@ -157,9 +162,15 @@ const Profile: React.FC = () => {
         >
           <Container>
 
-            <BackButton onPress={handleGoBack}>
-              <Icon name="chevron-left" size={24} color="#999591" />
-            </BackButton>
+            <ContainerButtons>
+              <BackButton onPress={handleGoBack}>
+                <Icon name="chevron-left" size={24} color="#999591" />
+              </BackButton>
+
+              <LogoutButton onPress={handleLogout}>
+                <Icon name="power" size={24} color="#999591" />
+              </LogoutButton>
+            </ContainerButtons>
 
             <UserAvatarButton onPress={handleUpdateAvatar}>
               {user.avatar_url
