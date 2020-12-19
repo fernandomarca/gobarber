@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest":true
     },
     "extends": [
         "prettier/@typescript-eslint",
@@ -27,6 +28,7 @@
     "rules": {
         "react/jsx-props-no-spreading":"off",
         // "react/jsx-ident":"off",
+        "import/no-duplicates":"off",
         "arrow-body-style":"off",
         "operator-linebreak":"off",
         "implicit-arrow-linebreak":"off",
