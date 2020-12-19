@@ -7,3 +7,4 @@ tmp/
 .env
 ormconfig.json
 backend/ormconfig.json
+dist
