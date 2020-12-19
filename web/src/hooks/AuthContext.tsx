@@ -28,7 +28,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GoBarBer:token');
+    const token = localStorage.getItem('@GoBarber:token');
     const user = localStorage.getItem('@GoBarber:user');
 
     if (user && token) {
@@ -43,7 +43,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const response = await api.post('sessions', { email, password });
     const { token, user } = response.data;
 
-    localStorage.setItem('@GoBarBer:token', token);
+    localStorage.setItem('@GoBarber:token', token);
     localStorage.setItem('@GoBarber:user', JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarBer:token');
+    localStorage.removeItem('@GoBarber:token');
     localStorage.removeItem('@GoBarber:user');
 
     setData({} as AuthState);
@@ -81,10 +81,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
 
   return context;
 }
