@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      #instala o node.js
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-verion: 14.x
+    
+    #instalar as dependencias yarn
+      - name: Install dependencies
+        run: yarn
+    #executar a build
+      - name: Run build
+        run: yarn build
+    #copiar pasta dist pra dentro da digital Ocean
+      - name: Copy dist to Digital Ocean
+        uses: appleboy/scp-action@master
+        with: 
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          PORT: ${{secrets.SSH_PORT}}
+          key: ${{secrets.SSH_KEY}}
+          SOURCE: "dist"
+          target: "test"
+    
+          
+    #substituir o codigo existente na pasta dist pelo novo código
+    #executar yarn na digital ocean
+    #executar migrations do typeorm
+    # restart o servidor node.js
