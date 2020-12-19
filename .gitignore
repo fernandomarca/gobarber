@@ -8,3 +8,4 @@ tmp/
 ormconfig.json
 backend/ormconfig.json
 dist
+coverage
