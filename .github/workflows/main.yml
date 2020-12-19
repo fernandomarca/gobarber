@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
         with:
-          node-verion: 14.x
+          node-version: 14.x
     
     #instalar as dependencias yarn
       - name: Install dependencies
@@ -37,8 +37,9 @@ jobs:
           username: ${{secrets.SSH_USER}}
           PORT: ${{secrets.SSH_PORT}}
           key: ${{secrets.SSH_KEY}}
-          SOURCE: "./backend/*, !node_modules, !appgobarber, !web"
+          SOURCE: "backend/*, !node_modules, !appgobarber, !web"
           target: "~/app"
+          strip_components : 1
     
     #executar yarn na digital ocean
       
