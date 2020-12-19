@@ -35,8 +35,8 @@ jobs:
           username: ${{secrets.SSH_USER}}
           PORT: ${{secrets.SSH_PORT}}
           key: ${{secrets.SSH_KEY}}
-          SOURCE: "backend/dist"
-          target: "test"
+          SOURCE: "."
+          target: "~/app"
     
           
     #substituir o codigo existente na pasta dist pelo novo código
