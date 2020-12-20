@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      #instala o node.js
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+    
+    #instalar as dependencias yarn
+      - name: Install dependencies
+        run: yarn
+        
+    #executar a build
+      - name: Run build
+        run: yarn build
+        
+    #copiar código para digital Ocean
+      - name: Copy dist to Digital Ocean
+        uses: appleboy/scp-action@master
+        with: 
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          PORT: ${{secrets.SSH_PORT}}
+          key: ${{secrets.SSH_KEY}}
+          SOURCE: "backend/*, !node_modules, !appgobarber, !web"
+          target: "~/app"
+          strip_components : 1
+    
+    #Run prodution script on Digital Ocean
+      - name: Run prodution script on Digital Ocean
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          PORT: ${{secrets.SSH_PORT}}
+          key: ${{secrets.SSH_KEY}}
+          script: | 
+            cd ~/app
+            yarn
+            ./node_modules/.bin/typeorm migration:run
+            pm2 restart gobarber-api
+            
