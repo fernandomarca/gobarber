@@ -1,4 +1,4 @@
-package com.appgobarber;
+package com.gomustachemarber;
 // Altere para o seu pacote
 
 import android.content.Intent;
