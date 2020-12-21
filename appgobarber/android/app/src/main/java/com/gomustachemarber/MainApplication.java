@@ -3,7 +3,7 @@ package com.gomustachemarber;
 import android.app.Application;
 import android.content.Context;
 
-import com.goMustacheBarber.BuildConfig;
+import com.gomustachemarber.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
