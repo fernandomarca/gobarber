@@ -1,4 +1,4 @@
-package com.gomustachemarber;
+package br.com.fernandomarcamagalhaes.appgobarber;
 // Altere para o seu pacote
 
 import android.content.Intent;

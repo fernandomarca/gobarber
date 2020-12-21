@@ -1,9 +1,9 @@
-package com.gomustachemarber;
+package br.com.fernandomarcamagalhaes.appgobarber;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.gomustachemarber.BuildConfig;
+import br.com.fernandomarcamagalhaes.appgobarber.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
