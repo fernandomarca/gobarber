@@ -1,1 +1,1 @@
-web: cd backend && yarn start-js
+web: node dist/shared/infra/http/server.js
