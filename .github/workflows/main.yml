@@ -123,3 +123,4 @@ jobs:
           heroku_app_name: "gobarber-front" #Must be unique in Heroku
           heroku_email: "fernandomarca@hotmail.com"
           appdir: "web"
+          buildpack: "https://github.com/mars/create-react-app-buildpack.git#v6.0.0"
