@@ -95,4 +95,4 @@ jobs:
           heroku_app_name: "gobarber-front" #Must be unique in Heroku
           heroku_email: "fernandomarca@hotmail.com"
           appdir: "web"
-         procfile: "web: node dist/shared/infra/http/server.js"
+          procfile: "web: node dist/shared/infra/http/server.js"
