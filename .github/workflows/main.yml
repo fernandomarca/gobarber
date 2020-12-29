@@ -75,4 +75,4 @@ jobs:
           heroku_app_name: "newgobarber" #Must be unique in Heroku
           heroku_email: "fernandomarca@hotmail.com"
           appdir: "backend"
-          procfile: "web: yarn start"
+#          procfile: "web: yarn start"
