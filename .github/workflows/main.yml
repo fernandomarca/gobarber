@@ -67,12 +67,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+          working-directory: backend
+
     steps:
       - uses: actions/checkout@v2
+
+      #instala o node.js
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+
+    #instalar as dependencias yarn
+      - name: Install dependencies
+        run: yarn
+
+    #executar a build
+      - name: Run build
+        run: yarn build
+
       - uses: akhileshns/heroku-deploy@v3.8.8 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "newgobarber" #Must be unique in Heroku
           heroku_email: "fernandomarca@hotmail.com"
           appdir: "backend"
-#          procfile: "web: yarn start"
+          procfile: "web: yarn start-js"
